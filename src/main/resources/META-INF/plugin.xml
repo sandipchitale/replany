@@ -32,7 +32,7 @@
                 class="sandipchitale.replany.REPLAnyAction"
                 text="REPL..."
                 description="Create REPL for any command.">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>

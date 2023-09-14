@@ -25,9 +25,8 @@ public class REPLAnyAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        // Prompt for command name to REPL
         Project project = e.getProject();
-
+        // Prompt for command name to REPL
         String commandToREPL = Messages.showInputDialog(
                 Objects.requireNonNull(WindowManager.getInstance().getFrame(project)),
                 "Enter command to REPL", "REPL Command",
