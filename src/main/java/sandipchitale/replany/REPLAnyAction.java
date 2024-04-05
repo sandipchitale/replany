@@ -9,7 +9,7 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.wm.WindowManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.plugins.terminal.ShellTerminalWidget;
-import org.jetbrains.plugins.terminal.TerminalView;
+import org.jetbrains.plugins.terminal.TerminalToolWindowManager;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -35,7 +35,7 @@ public class REPLAnyAction extends AnAction {
                 null);
         if (commandToREPL != null) {
             @NotNull ShellTerminalWidget shellTerminalWidget =
-                    TerminalView.getInstance(Objects.requireNonNull(project)).createLocalShellWidget(project.getBasePath(), "repl");
+                    TerminalToolWindowManager.getInstance(Objects.requireNonNull(project)).createLocalShellWidget(project.getBasePath(), "repl");
             try {
                 shellTerminalWidget.executeCommand(String.format("java -jar %s %s", REPL_JAR, commandToREPL));
             } catch (IOException ignore) {
