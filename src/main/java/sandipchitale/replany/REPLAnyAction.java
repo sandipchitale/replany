@@ -7,11 +7,10 @@ import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.wm.WindowManager;
+import com.intellij.terminal.ui.TerminalWidget;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.plugins.terminal.ShellTerminalWidget;
 import org.jetbrains.plugins.terminal.TerminalToolWindowManager;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
@@ -34,12 +33,9 @@ public class REPLAnyAction extends AnAction {
                 "kubectl",
                 null);
         if (commandToREPL != null) {
-            @NotNull ShellTerminalWidget shellTerminalWidget =
-                    TerminalToolWindowManager.getInstance(Objects.requireNonNull(project)).createLocalShellWidget(project.getBasePath(), "repl", true, true);
-            try {
-                shellTerminalWidget.executeCommand(String.format("java -jar %s %s", REPL_JAR, commandToREPL));
-            } catch (IOException ignore) {
-            }
+            @NotNull TerminalWidget shellTerminalWidget =
+                    TerminalToolWindowManager.getInstance(Objects.requireNonNull(project)).createShellWidget(project.getBasePath(), "repl", true, true);
+            shellTerminalWidget.sendCommandToExecute(String.format("java -jar %s %s", REPL_JAR, commandToREPL));
         }
     }
 }
