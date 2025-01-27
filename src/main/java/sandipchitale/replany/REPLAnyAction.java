@@ -35,7 +35,7 @@ public class REPLAnyAction extends AnAction {
         if (commandToREPL != null) {
             @NotNull TerminalWidget shellTerminalWidget =
                     TerminalToolWindowManager.getInstance(Objects.requireNonNull(project)).createShellWidget(project.getBasePath(), "repl", true, true);
-            shellTerminalWidget.sendCommandToExecute(String.format("java -jar %s %s", REPL_JAR, commandToREPL));
+            shellTerminalWidget.sendCommandToExecute(String.format("java -jar '%s' %s", REPL_JAR, commandToREPL));
         }
     }
 }
